@@ -3,8 +3,6 @@
 ## Questions
 - Does movements table have recent/original pr data or just name/desc.  Basically, does this need to be a table at all? Or do we have all our data in athlete and movement models and can do calculations off that?
 
-<!-- ## Gym
-has_many athletes -->
 ## users
 has_many athletes
 
@@ -13,18 +11,17 @@ has_many athletes
 - password
 
 ## Athletes
-belong_to gym
-belongs_to user
+√ belongs_to user
 has_many movements
-has_many goals
+has_many pr_goals
 
 - name 
 - gender 
 - height:int 
 - weight:int 
 - birthday: date
-  - foreign key: pr_goals
-  - foreign key: movement
+- user:references
+
 
 ## movement_goals
 movement:references
@@ -38,21 +35,16 @@ has_one progress
 
 - movement_name 
 - description:text 
-
-- recent_pr_date:date
-- recent_pr_weight:integer
-- recent_pr_reps:integer
-
-- original_pr_date:date
-- original_pr_weight:int 
-- original_pr_reps:int goal:int
+- ***add image
+- *** add video
   - fk athlete
 
-## pr_goals
+## goals
 belongs_to athlete
 has_many movement_goals
 have_one movement through :movement_goals
 
+- movement_name
 - weight
 - reps
   - fk athlete
