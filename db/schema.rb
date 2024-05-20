@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_17_195413) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_20_162545) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,8 +60,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_195413) do
     t.bigint "movement_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "weight"
-    t.integer "reps"
     t.index ["movement_id"], name: "index_progress_movements_on_movement_id"
     t.index ["progress_id"], name: "index_progress_movements_on_progress_id"
   end
@@ -71,6 +69,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_195413) do
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "weight"
+    t.integer "reps"
     t.index ["athlete_id"], name: "index_progresses_on_athlete_id"
   end
 

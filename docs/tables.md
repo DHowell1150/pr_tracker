@@ -11,7 +11,7 @@ has_many athletes
 - password
 
 ## Athletes
-√ belongs_to user
+belongs_to user
 has_many movements
 has_many pr_goals
 

@@ -28,3 +28,8 @@
 
 
 - add gym as admin
+
+- Do suggested calculator for 2rm, 3rm, 4rm, 5rm etc based on current 1rm.  
+
+- Display a table of percentages of 1rm, 2rm, 3rm etc
+  - a table or just drop down forms for "Xrm" and "desired %"
