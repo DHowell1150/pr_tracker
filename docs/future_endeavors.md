@@ -1,5 +1,5 @@
 =============================
-> # Future endeavors 
+ # Future endeavors 
 =============================
 
 - Allow one account to have several athletes (partners)
@@ -33,3 +33,9 @@
 
 - Display a table of percentages of 1rm, 2rm, 3rm etc
   - a table or just drop down forms for "Xrm" and "desired %"
+
+- Log out link
+  - authenticated user doesn't see links for guests
+
+
+- 
