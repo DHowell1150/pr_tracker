@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_17_195413) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_21_155246) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "athletes", force: :cascade do |t|
     t.string "name"
     t.string "gender"
+    t.date "birthday"
     t.integer "height"
     t.integer "weight"
-    t.date "birthday"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -28,30 +28,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_195413) do
 
   create_table "goals", force: :cascade do |t|
     t.bigint "athlete_id", null: false
-    t.integer "weight"
-    t.integer "reps"
+    t.bigint "movement_id", null: false
+    t.float "target_weight"
+    t.integer "target_reps"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["athlete_id"], name: "index_goals_on_athlete_id"
-  end
-
-  create_table "movement_goals", force: :cascade do |t|
-    t.bigint "movement_id", null: false
-    t.bigint "goal_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["goal_id"], name: "index_movement_goals_on_goal_id"
-    t.index ["movement_id"], name: "index_movement_goals_on_movement_id"
+    t.index ["movement_id"], name: "index_goals_on_movement_id"
   end
 
   create_table "movements", force: :cascade do |t|
-    t.string "movement_name"
-    t.text "description"
+    t.string "name"
+    t.string "description"
+    t.string "image"
+    t.string "video"
     t.bigint "athlete_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
-    t.string "video"
     t.index ["athlete_id"], name: "index_movements_on_athlete_id"
   end
 
@@ -60,15 +53,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_195413) do
     t.bigint "movement_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "weight"
-    t.integer "reps"
     t.index ["movement_id"], name: "index_progress_movements_on_movement_id"
     t.index ["progress_id"], name: "index_progress_movements_on_progress_id"
   end
 
   create_table "progresses", force: :cascade do |t|
-    t.bigint "athlete_id", null: false
     t.date "date"
+    t.integer "reps"
+    t.integer "weight"
+    t.bigint "athlete_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["athlete_id"], name: "index_progresses_on_athlete_id"
@@ -84,8 +77,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_195413) do
 
   add_foreign_key "athletes", "users"
   add_foreign_key "goals", "athletes"
-  add_foreign_key "movement_goals", "goals"
-  add_foreign_key "movement_goals", "movements"
+  add_foreign_key "goals", "movements"
   add_foreign_key "movements", "athletes"
   add_foreign_key "progress_movements", "movements"
   add_foreign_key "progress_movements", "progresses"
