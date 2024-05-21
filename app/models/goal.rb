@@ -1,4 +1,5 @@
 class Goal < ApplicationRecord
+  validates_presence_of :weight, :reps
   validates_numericality_of :weight, :reps
 
   belongs_to :athlete

@@ -1,5 +1,6 @@
 class Progress < ApplicationRecord
   validates_numericality_of :weight, :reps
+  validates_presence_of :weight, :reps
 
   belongs_to :athlete
   has_many :progress_movements, dependent: :destroy

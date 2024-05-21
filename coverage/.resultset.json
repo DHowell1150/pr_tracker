@@ -257,7 +257,16 @@
           1,
           1,
           1,
+          null,
           1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null
         ]
       },
@@ -276,6 +285,8 @@
           1,
           2,
           2,
+          2,
+          2,
           null,
           null,
           1,
@@ -288,6 +299,7 @@
       },
       "/Users/danahowell/turing/passion_projects/pr_tracker/pr_tracker/app/models/goal.rb": {
         "lines": [
+          1,
           1,
           1,
           null,
@@ -337,6 +349,8 @@
           2,
           2,
           2,
+          2,
+          2,
           null,
           null
         ]
@@ -346,6 +360,8 @@
           1,
           1,
           null,
+          1,
+          1,
           1,
           1,
           1,
@@ -384,6 +400,9 @@
           1,
           2,
           2,
+          2,
+          2,
+          null,
           null,
           null,
           1,
@@ -396,6 +415,7 @@
       },
       "/Users/danahowell/turing/passion_projects/pr_tracker/pr_tracker/app/models/progress.rb": {
         "lines": [
+          1,
           1,
           1,
           null,
@@ -415,6 +435,8 @@
           2,
           2,
           null,
+          2,
+          null,
           null,
           1,
           2,
@@ -425,18 +447,21 @@
       "/Users/danahowell/turing/passion_projects/pr_tracker/pr_tracker/app/models/user.rb": {
         "lines": [
           1,
+          null,
+          1,
           1,
           1,
           null,
           null,
           null,
-          1,
+          null,
           null,
           1,
+          null,
           null
         ]
       }
     },
-    "timestamp": 1716232180
+    "timestamp": 1716297017
   }
 }
