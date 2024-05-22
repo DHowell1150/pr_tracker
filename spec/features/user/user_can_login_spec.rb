@@ -21,10 +21,11 @@ RSpec.describe "logging in" do
     
     fill_in :username, with: user.username
     fill_in :password, with: user.password
+    fill_in :email, with: user.email
 
     click_on "Log In"
 
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(root_path)# I just changed this from login_path to root_path but the lesson had login_path. 
 
     expect(page).to have_content("Welcome, #{user.username}!")
     expect(page).to_not have_link("I already have an account")
@@ -37,6 +38,7 @@ RSpec.describe "logging in" do
 
     fill_in :username, with: user.username
     fill_in :password, with: "incorrect password"
+    fill_in :email, with: "funbucket@aol.com"
 
     click_on "Log In"
 
