@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "new_athlete " do
   it "can create a new athete" do
     # - As a user
-    visit athlete_path(@athlete)
+    # visit athlete_path(@athlete)
     # - When I visit new_athlete_path
     # - I see a form to enter my:
     #   - name (text field) 

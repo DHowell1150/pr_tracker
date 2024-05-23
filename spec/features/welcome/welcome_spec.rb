@@ -17,9 +17,11 @@ RSpec.describe "User registration form" do
 
     username = "funbucket13"
     password = "test"
+    email = "funbucket@aol.com"
 
     fill_in :user_username, with: username
     fill_in :user_password, with: password
+    fill_in :user_email, with: email
 
     # fill_in "Username", with: username
     # fill_in "Password", with: password
