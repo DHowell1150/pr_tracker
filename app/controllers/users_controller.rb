@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     # user[:username] = user[:username].downcase
     new_user = User.new(user_params)
     session[:user_id] = new_user.id
-      flash[:success] = "Welcome, #{new_user.username}!"
+      flash[:success] = "Welcome, #{new_user.username}! Please Log in"
       redirect_to root_path
   end
 
