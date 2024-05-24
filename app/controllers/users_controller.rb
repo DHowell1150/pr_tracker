@@ -3,9 +3,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
   def create
-    # user = user_params
-    # user[:username] = user[:username].downcase
+    user = user_params
+    user[:username] = user[:username].downcase
     new_user = User.new(user_params)
+    new_user.save
     session[:user_id] = new_user.id
       flash[:success] = "Welcome, #{new_user.username}! Please Log in"
       redirect_to root_path

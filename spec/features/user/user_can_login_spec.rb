@@ -31,6 +31,7 @@ RSpec.describe "logging in" do
     expect(page).to_not have_link("Log In")
     expect(page).to_not have_link("Register as a User")
     expect(page).to have_link("Log out")
+    expect(page).to have_link("Create Athlete")
   end
 
   it "cannot log in with bad credentails" do
