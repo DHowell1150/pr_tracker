@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def login_form #like a new action
   end
 
-  def login
+  def login # like a create action
     user = User.find_by(username: params[:username])
     if user.authenticate(params[:password])
       session[:user_id] = user.id

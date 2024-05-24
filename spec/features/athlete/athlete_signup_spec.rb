@@ -25,7 +25,6 @@ RSpec.describe "new_athlete " do
     click_link "Create Athlete"
 
     expect(current_path).to eq(new_athlete_path)
-save_and_open_page
     expect(page).to have_field("Name")
     expect(page).to have_select(:gender, options: ["Male", "Female", "Unspecified"])
     expect(page).to have_field("Height", type: "number")

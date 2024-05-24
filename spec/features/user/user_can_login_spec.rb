@@ -15,7 +15,7 @@ RSpec.describe "logging in" do
     # and I should see a link that says "Log out"
 
     visit root_path
-    user = User.create(username: "funbucket13", password: "test", email: "funbucket@aol.com")
+    user = User.create!(username: "funbucket13", password: "test", email: "funbucket@aol.com", id: 1)
     click_on "Log In"
 
     expect(current_path).to eq(login_path)
