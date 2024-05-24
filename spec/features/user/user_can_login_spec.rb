@@ -35,6 +35,7 @@ RSpec.describe "logging in" do
   end
 
   it "cannot log in with bad credentails" do
+    # rails server isn't acting as it should based on the test
     visit login_path
     user = User.create!(username: "funbucket13", password: "test", email: "funbucket@aol.com")
 
