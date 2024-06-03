@@ -3,8 +3,11 @@ require "rails_helper"
 RSpec.describe "new_athlete", type: :feature  do
   describe "athlete index page" do
     before do
-      @dana = Athlete.create!(name: "Dana Howell", gender: "Female", height: 67, weight: 155, birthday: 8/22/1982)
-      @stace = Athlete.create!(name: "Stacey Kessler", gender: "Female", height: 70, weight: 175, birthday: 9/6/1987)
+      @user = User.create!(username: "Dana Howell", email: "howelld115@gmail.com", password: "test")
+      @dana = @user.athletes.create!(name: "Dana Howell", gender: "Female", height: 67, weight: 155, birthday: "1982-08-22")
+      @stace = @user.athletes.create!(name: "Stacey Kessler", gender: "Female", height: 70, weight: 175, birthday: "1987-09-06")
+
+      # @user.athletes << [@dana, @stace]
     end
 
     it "displays all athletes with attributes" do
