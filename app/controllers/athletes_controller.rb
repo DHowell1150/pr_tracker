@@ -1,10 +1,13 @@
 class AthletesController < ApplicationController
   def index
+    require 'pry' ; binding.pry
+    @user = User.create!(username: "Dana Howell", email: "howelld115@gmail.com", password: "test")
+
     @athletes = Athlete.all
   end
 
   def new
-    @athlete = Athlete.new
+    # @athlete = Athlete.new
   end
 
   def create
@@ -19,7 +22,7 @@ class AthletesController < ApplicationController
   end
 
   def show
-
+    @athlete = Athlete.find(params[:id])
   end
 
   private
