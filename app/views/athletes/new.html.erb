@@ -1,19 +1,20 @@
 <h1> Create Your Account </h1>
 
-<%= form_with url: athletes_path, method: :post, data: {turbo: false}, local: true do |form| %>
-  <%= form.label :name, 'Name:' %>
+<%= form_with model: @new_athlete, local: true do |form| %>  <%= form.label :name, 'NAME:' %>
   <%= form.text_field :name %><br>
 
-  <%= form.label :gender, 'Gender:' %>
+  <%= form.label :gender, 'GENDER:' %>
   <%= form.select :gender, ['Male', 'Female', 'Unspecified'] %><br>
 
-  <%= form.label :height, 'Height:' %>
-  <%= form.number_field :height %><br>
+  HEIGHT: <%= form.label :feet, 'Feet:' %>
+  <%= form.number_field :feet %>
+  <%= form.label :inches, 'Inches:' %>
+  <%= form.number_field :inches %><br>
 
-  <%= form.label :weight, 'Weight:' %>
+  <%= form.label :weight, 'WEIGHT:' %>
   <%= form.number_field :weight %><br>
 
-  <%= form.label :birthday, 'Birthday:' %>
+  <%= form.label :birthday, 'BIRTHDAY:' %>
   <%= form.date_field :birthday %><br>
 
   <%= form.submit 'Add Athlete' %>

@@ -18,7 +18,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_215512) do
     t.string "name"
     t.string "gender"
     t.date "birthday"
-    t.integer "height"
+    t.integer "feet"
+    t.integer "inches"
     t.integer "weight"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false

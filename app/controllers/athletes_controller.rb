@@ -1,24 +1,26 @@
 class AthletesController < ApplicationController
   def index
-    require 'pry' ; binding.pry
-    @user = User.create!(username: "Dana Howell", email: "howelld115@gmail.com", password: "test")
-
     @athletes = Athlete.all
   end
 
   def new
-    # @athlete = Athlete.new
+    #with form_with @model knows its a new (no :id in params) so send it to POST
+    @new_athlete = Athlete.new
   end
 
   def create
     @new_athlete = Athlete.new(athlete_params)
-    @new_athlete.save
-    flash[:success] = "'#{@new_athlete.name}' created successfully."
-    redirect_to athletes_path
+    @new_athlete = current_user.athletes.build(athlete_params)
+    if @new_athlete.save
+      redirect_to athletes_path
+      flash[:success] = "'#{@new_athlete.name}' created successfully."
     # else
-    #   flash[:error] = "Sorry, your Athlete doesn't have the correct credentials"
-    #   render new_athlete_path
-    # end
+      # flash[:error] = "Sorry, your Athlete doesn't have the correct credentials"
+      # render new_athlete_path
+    else
+      logger.error @new_athlete.errors.full_messages # Log validation errors
+      render new_athlete_path
+    end
   end
 
   def show
@@ -27,10 +29,6 @@ class AthletesController < ApplicationController
 
   private
   def athlete_params
-    params.require(:athlete).permit(:name, 
-                                    :gender, 
-                                    :height, 
-                                    :weight, 
-                                    :birthday)
+    params.require(:athlete).permit(:name, :gender, :feet, :inches, :weight, :birthday)
   end
 end

@@ -4,7 +4,8 @@ class CreateAthletes < ActiveRecord::Migration[7.1]
       t.string :name
       t.string :gender
       t.date :birthday
-      t.integer :height
+      t.integer :feet
+      t.integer :inches
       t.integer :weight
       t.references :user, null: false, foreign_key: true
       

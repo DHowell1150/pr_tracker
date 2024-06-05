@@ -4,8 +4,8 @@
 <div id=<%="athlete-#{athlete.id}" %>>
   <h3><%= athlete.name %></h3>
   Gender: <%= athlete.gender %><br>
-  Height: <%= athlete.height %><br>
-  Weight: <%= athlete.weight %><br>
-  Birthday: <%= athlete.birthday %><br>
+  Height: <%= athlete.feet %>'<%= athlete.inches %>"<br>
+  Weight: <%= athlete.weight %>lbs<br>
+  Birthday: <%= athlete.birthday.strftime("%-m/%-d/%Y") %><br>
 </div>
 <% end %>

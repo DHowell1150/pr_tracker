@@ -4,8 +4,9 @@ RSpec.describe "new_athlete", type: :feature  do
   describe "athlete index page" do
     before do
       @user = User.create!(username: "Dana Howell", email: "howelld115@gmail.com", password: "test")
-      @dana = @user.athletes.create!(name: "Dana Howell", gender: "Female", height: 67, weight: 155, birthday: "1982-08-22") ##in pry: Sun, 22 Aug 1982
-      @stace = @user.athletes.create!(name: "Stacey Kessler", gender: "Female", height: 70, weight: 175, birthday: "1987-09-06")
+      @dana = @user.athletes.create!(name: "Dana Howell", gender: "Female", feet: 5, inches: 7, weight: 155, birthday: "1982-08-22") ##in pry: Sun, 22 Aug 1982
+      @stace = @user.athletes.create!(name: "Stacey Kessler", gender: "Female", feet: 5, inches: 10, weight: 175, birthday: "1987-09-06")
+
       visit athletes_path
       # @user.athletes << [@dana, @stace]
     end
@@ -21,26 +22,30 @@ RSpec.describe "new_athlete", type: :feature  do
 
       # fill_in("Name", with: @stace.name)
       # fill_in("Gender", with: @stace.gender)
-      # fill_in("Height", with: @stace.height)
+      # fill_in("Feet", with: @stace.feet)
+      # fill_in("Inches", with: @stace.inches)
       # fill_in("Weight", with: @stace.weight)
       # fill_in("Birthday", with: @stace.birthday)
       
       # click_button("Create Athlete")
       # expect(current_path).to eq(athletes_path)
       within "#athlete-#{@dana.id}" do
+      save_and_open_page
+      
         expect(page).to have_content(@dana.name)
         expect(page).to have_content(@dana.gender)
-        expect(page).to have_content(@dana.height)
+        expect(page).to have_content(@dana.feet)
+        expect(page).to have_content(@dana.inches)
         expect(page).to have_content(@dana.weight)
-        expect(page).to have_content(@dana.birthday)
+        expect(page).to have_content(@dana.birthday.strftime("%-m/%-d/%Y"))
       end
-
       within "#athlete-#{@stace.id}" do
         expect(page).to have_content(@stace.name)
         expect(page).to have_content(@stace.gender)
-        expect(page).to have_content(@stace.height)
+        expect(page).to have_content(@stace.feet)
+        expect(page).to have_content(@stace.inches)
         expect(page).to have_content(@stace.weight)
-        expect(page).to have_content(@stace.birthday)
+        expect(page).to have_content(@stace.birthday.strftime("%-m/%-d/%Y"))
       end
     end
   end
