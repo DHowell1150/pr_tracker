@@ -27,6 +27,16 @@ class AthletesController < ApplicationController
     @athlete = Athlete.find(params[:id])
   end
 
+  def edit
+    @athlete = Athlete.find(params[:id])
+  end
+
+  def update
+    @athlete = Athlete.find(params[:id])
+    @athlete = Athlete.update(athlete_params)
+    redirect_to athlete_path(@athlete)
+  end
+
   private
   def athlete_params
     params.require(:athlete).permit(:name, :gender, :feet, :inches, :weight, :birthday)
