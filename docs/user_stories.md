@@ -64,7 +64,7 @@
     - Birthday: date
   - When I click "Save" I am redirected to athlete_path(@athlete)
 
-> ## DASHBOARD
+> ## DASHBOARD/SHOW
 - I can really see the dashboard wrapping everything together and making the information really nice! (Can save it for after all the other pages are made)
 - US User Dashboard
   - as a user,
