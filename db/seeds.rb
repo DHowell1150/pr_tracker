@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+
+
+@user = User.create!(username: "Dana Howell", email: "howelld115@gmail.com", password: "test")
+@dana = @user.athletes.create!(name: "Dana Howell", gender: "Female", height: 67, weight: 155, birthday: "1982-08-22") ##in pry: Sun, 22 Aug 1982
+@stace = @user.athletes.create!(name: "Stacey Kessler", gender: "Female", height: 70, weight: 175, birthday: "1987-09-06")

@@ -16,7 +16,8 @@ RSpec.describe "logging in" do
 
     visit root_path
     user = User.create(username: "funbucket13", password: "test", email: "funbucket@aol.com")
-    click_on "I already have an account"
+    click_on "Log In"
+
     expect(current_path).to eq(login_path)
     
     fill_in :username, with: user.username
@@ -24,12 +25,13 @@ RSpec.describe "logging in" do
     fill_in :email, with: user.email
 
     click_on "Log In"
-
     expect(current_path).to eq(root_path)# I just changed this from login_path to root_path but the lesson had login_path. 
 
     expect(page).to have_content("Welcome, #{user.username}!")
-    expect(page).to_not have_link("I already have an account")
+    expect(page).to_not have_link("Log In")
     expect(page).to_not have_link("Register as a User")
+    expect(page).to have_link("Log out")
+    expect(page).to have_link("Create Athlete")
   end
 
   it "cannot log in with bad credentails" do
