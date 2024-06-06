@@ -1,0 +1,22 @@
+<h1> <%= @athlete.name %> </h1>
+
+<%= form_with model: @athlete, method: :patch, local: true do |form|%>
+  <%= form.label :name %>
+  <%= form.text_field :name %><br>
+
+  <%= form.label :gender %>
+  <%= form.select :gender, ["Male", "Female", "Unspecified"] %><br>
+
+  HEIGHT: <%= form.label :feet %>
+  <%= form.number_field :feet %>
+  <%= form.label :inches %>
+  <%= form.number_field :inches %><br>
+
+  <%= form.label :weight %>
+  <%= form.number_field :weight %><br>
+
+  <%= form.label :birthday%>
+  <%= form.date_field :birthday %><br>
+
+  <%= form.submit "Update #{@athlete.name}" %>
+  <% end %>

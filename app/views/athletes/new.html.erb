@@ -1,6 +1,7 @@
 <h1> Create Your Account </h1>
 
-<%= form_with model: @new_athlete, local: true do |form| %>  <%= form.label :name, 'NAME:' %>
+<%= form_with model: @new_athlete, local: true do |form| %> 
+  <%= form.label :name, 'NAME:' %>
   <%= form.text_field :name %><br>
 
   <%= form.label :gender, 'GENDER:' %>
