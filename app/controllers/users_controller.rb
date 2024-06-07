@@ -6,10 +6,15 @@ class UsersController < ApplicationController
     user = user_params
     user[:username] = user[:username].downcase
     new_user = User.new(user_params)
-    new_user.save
-    session[:user_id] = new_user.id
-      flash[:success] = "Welcome, #{new_user.username}! Please Log in"
-      redirect_to root_path
+    
+    if new_user.save
+      session[:user_id] = new_user.id
+      flash[:success] = "Welcome, #{new_user.username}!"
+      redirect_to login_path
+    else 
+      redirect_to new_user
+      flash[:error] = "Sorry, your credentials are bad"
+    end
   end
 
   def login_form #like a new action
