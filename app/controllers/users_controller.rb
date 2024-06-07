@@ -3,9 +3,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
   def create
-    # user = user_params
-    # user[:username] = user[:username].downcase
+    user = user_params
+    user[:username] = user[:username].downcase
     new_user = User.new(user_params)
+    
     if new_user.save
       session[:user_id] = new_user.id
       flash[:success] = "Welcome, #{new_user.username}!"
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
   def login_form #like a new action
   end
 
-  def login
+  def login # like a create action
     user = User.find_by(username: params[:username])
     if user.authenticate(params[:password])
       session[:user_id] = user.id
