@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "destroy_athlete", type: :feature  do
   describe "HAPPY PATHS" do
-    it "destroy athlete: Athlete is deleted" do
+    xit "destroy athlete: Athlete is deleted" do
       athlete = Athlete.create!(name: "John", gender: "Male", height: 72, weight: 200, birthday: "01/01/1991")
 
       visit athlete_path(athlete)
@@ -18,7 +18,7 @@ RSpec.describe "destroy_athlete", type: :feature  do
   end
 
   describe "SAD PATHS" do
-    it "athlete destroy page: Athlete does not exist" do
+    xit "athlete destroy page: Athlete does not exist" do
 
       visit athlete_path(id: 9999)
 

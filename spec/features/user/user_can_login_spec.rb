@@ -2,18 +2,6 @@ require "rails_helper"
 
 RSpec.describe "logging in" do
   it "can log in with valid credentials" do
-    # As a registered user
-    # When I visit '/'
-    # and I click on a link that says "I already have an account"
-    # Then I should see a login form
-    # When I enter my username and password
-    # and submit the form
-    # I am redirected to the home page
-    # and I see a welcome message with my username
-    # and I should no longer see the link that says "I already have an account"
-    # and I should no longer see the link that says "Register as a User"
-    # and I should see a link that says "Log out"
-
     visit root_path
     user = User.create!(username: "funbucket13", password: "test", email: "funbucket@aol.com")
 
