@@ -9,17 +9,13 @@ class AthletesController < ApplicationController
   end
 
   def create
-    @new_athlete = Athlete.new(athlete_params)
     @new_athlete = current_user.athletes.build(athlete_params)
     if @new_athlete.save
-      redirect_to athletes_path
       flash[:success] = "'#{@new_athlete.name}' created successfully."
-    # else
-      # flash[:error] = "Sorry, your Athlete doesn't have the correct credentials"
-      # render new_athlete_path
+      redirect_to athletes_path
     else
-      logger.error @new_athlete.errors.full_messages # Log validation errors
-      render new_athlete_path
+      flash[:errors] = @new_athlete.errors.full_messages.to_sentence
+      redirect_to new_athlete_path
     end
   end
 
