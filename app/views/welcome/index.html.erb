@@ -1,7 +1,7 @@
 <% if current_user %>
-  <%= link_to "Log out" %><br>
+  <%= link_to "Log out" %>  
   <%= link_to "Create Athlete", new_athlete_path%>
 <% else %>
-  <%= link_to "Register as a New User", new_user_path %><br>
+  <%= link_to "Register as a User", new_user_path %><br>
   <%= link_to "Log In", login_path %>
 <% end %>
