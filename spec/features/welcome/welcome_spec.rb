@@ -11,7 +11,7 @@ RSpec.describe "User registration form" do
 
   it "creates new user" do
     visit root_path
-    click_on "Register as a User"
+    click_on "Register as a New User"
 
     expect(current_path).to eq(new_user_path)
 
@@ -19,11 +19,9 @@ RSpec.describe "User registration form" do
     password = "test"
     email = "funbucket@aol.com"
 
-
     fill_in :user_username, with: username
     fill_in :user_password, with: password
     fill_in :user_email, with: email
-
 
     # fill_in "Username", with: username
     # fill_in "Password", with: password

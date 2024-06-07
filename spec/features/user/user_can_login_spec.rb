@@ -15,11 +15,12 @@ RSpec.describe "logging in" do
     # and I should see a link that says "Log out"
 
     visit root_path
-    user = User.create(username: "funbucket13", password: "test", email: "funbucket@aol.com")
+    user = User.create!(username: "funbucket13", password: "test", email: "funbucket@aol.com")
+
     click_on "Log In"
 
     expect(current_path).to eq(login_path)
-    
+
     fill_in :username, with: user.username
     fill_in :password, with: user.password
     fill_in :email, with: user.email
@@ -35,6 +36,7 @@ RSpec.describe "logging in" do
   end
 
   it "cannot log in with bad credentails" do
+    # rails server isn't acting as it should based on the test
     visit login_path
     user = User.create!(username: "funbucket13", password: "test", email: "funbucket@aol.com")
 
