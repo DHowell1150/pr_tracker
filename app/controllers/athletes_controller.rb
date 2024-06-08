@@ -8,16 +8,44 @@ class AthletesController < ApplicationController
     @new_athlete = Athlete.new
   end
 
+  # def create
+  #   @new_athlete = current_user.athletes.build(athlete_params)
+  #   if @new_athlete.save
+  #     flash[:success] = "#{@new_athlete.name} created successfully."
+  #     redirect_to athletes_path
+  #   else
+  #     flash[:errors] = @new_athlete.errors.full_messages.to_sentence
+  #     redirect_to new_athlete_path
+  #   end
+  # end
+
+
   def create
     @new_athlete = current_user.athletes.build(athlete_params)
     if @new_athlete.save
-      flash[:success] = "#{@new_athlete.name} created successfully."
+      flash[:notice] = "#{@new_athlete.name} created successfully."
       redirect_to athletes_path
     else
-      flash[:errors] = @new_athlete.errors.full_messages.to_sentence
-      redirect_to new_athlete_path
+      flash[:error] = @new_athlete.errors.full_messages.to_sentence
+      # puts flash[:error] # Debugging line
+      render :new
     end
   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   def show
     @athlete = Athlete.find(params[:id])

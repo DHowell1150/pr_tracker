@@ -1,6 +1,6 @@
 class Athlete < ApplicationRecord
-  validates_presence_of :name, :gender, :birthday, :feet, :inches, :weight
-  validates_numericality_of :feet, :inches, :weight
+  validates :name, :gender, :birthday, :feet, :inches, :weight, presence: true
+  validates :feet, :inches, :weight, numericality: { only_integer: true }
 
   belongs_to :user
   has_many :movements, dependent: :destroy
