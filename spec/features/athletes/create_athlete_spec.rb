@@ -47,110 +47,166 @@ RSpec.describe "new_athlete", type: :feature  do
   end
 
   describe "SAD PATHS" do
-    xit "new athlete page: missing params - name" do
+    before do
+      @user = User.create!(
+        username: "funbucket13",
+        password: "test", 
+        email: "funbucket@aol.com")
+  
+      visit login_path
+  
+      fill_in :username, with: @user.username
+      fill_in :password, with: @user.password
+      fill_in :email, with: @user.email
+  
+      click_on "Log In"
+      expect(current_path).to eq(root_path)
+      visit new_athlete_path
+    end
+
+    it "new athlete page: missing params - name" do
       visit new_athlete_path
       
       expect(current_path).to eq(new_athlete_path)
 
-      fill_in("Name", with: "")
-      fill_in("Gender", with: "Female")
-      fill_in("Height", with: 60)
-      fill_in("Weight", with: 125)
-      fill_in("Birthday", with: "02/02/1992")
+      fill_in("NAME:", with: "")
+      select("Female", from: "GENDER:")
+      fill_in("Feet:", with: 5)
+      fill_in("Inches:", with: 7)
+      fill_in("WEIGHT:", with: 125)
+      fill_in("BIRTHDAY:", with: "02/02/1992")
 
-      click_button("Create Athlete")
+      click_button("Add Athlete")
 
-      expect(page).to have_text("Name cannot be blank.")
+      expect(page).to have_text("Name can't be blank")
     end
 
-    xit "new athlete page: missing params - gender" do
+    # it "new athlete page: missing params - gender" do
+    #   visit new_athlete_path
+      
+    #   expect(current_path).to eq(new_athlete_path)
+
+    #   fill_in("NAME:", with: "Jane Doe")
+    #   select("Female", from: "GENDER:")
+    #   fill_in("Feet:", with: 5)
+    #   fill_in("Inches:", with: 7)
+    #   fill_in("WEIGHT:", with: 125)
+    #   fill_in("BIRTHDAY:", with: "02/02/1992")
+
+    #   click_button("Add Athlete")
+
+    #   expect(page).to have_text("Gender can't be blank")
+    # end
+
+    it "new athlete page: missing params - feet" do
       visit new_athlete_path
       
       expect(current_path).to eq(new_athlete_path)
 
-      fill_in("Name", with: "Jane")
-      fill_in("Gender", with: "")
-      fill_in("Height", with: 60)
-      fill_in("Weight", with: 125)
-      fill_in("Birthday", with: "02/02/1992")
+      fill_in("NAME:", with: "Jane Doe")
+      select("Female", from: "GENDER:")
+      fill_in("Feet:", with: "")
+      fill_in("Inches:", with: 7)
+      fill_in("WEIGHT:", with: 125)
+      fill_in("BIRTHDAY:", with: "02/02/1992")
 
-      click_button("Create Athlete")
+      click_button("Add Athlete")
 
-      expect(page).to have_text("Gender cannot be blank.")
+      expect(page).to have_text("Feet can't be blank")
     end
 
-    xit "new athlete page: missing params - height" do
+    it "new athlete page: missing params - inches" do
       visit new_athlete_path
       
       expect(current_path).to eq(new_athlete_path)
 
-      fill_in("Name", with: "Jane")
-      fill_in("Gender", with: "Female")
-      fill_in("Height", with: "")
-      fill_in("Weight", with: 125)
-      fill_in("Birthday", with: "02/02/1992")
+      fill_in("NAME:", with: "Jane Doe")
+      select("Female", from: "GENDER:")
+      fill_in("Feet:", with: "5")
+      fill_in("Inches:", with: '')
+      fill_in("WEIGHT:", with: 125)
+      fill_in("BIRTHDAY:", with: "02/02/1992")
 
-      click_button("Create Athlete")
+      click_button("Add Athlete")
 
-      expect(page).to have_text("Height cannot be blank.")
+      expect(page).to have_text("Inches is not a number")
     end
 
-    xit "new athlete page: missing params - weight" do
+    it "new athlete page: missing params - weight" do
       visit new_athlete_path
       
       expect(current_path).to eq(new_athlete_path)
 
-      fill_in("Name", with: "Jane")
-      fill_in("Gender", with: "Female")
-      fill_in("Height", with: 60)
-      fill_in("Weight", with: "")
-      fill_in("Birthday", with: "02/02/1992")
+      fill_in("NAME:", with: "Jane Doe")
+      select("Female", from: "GENDER:")
+      fill_in("Feet:", with: 5)
+      fill_in("Inches:", with: 7)
+      fill_in("WEIGHT:", with: "")
+      fill_in("BIRTHDAY:", with: "02/02/1992")
 
-      click_button("Create Athlete")
+      click_button("Add Athlete")
 
-      expect(page).to have_text("Weight cannot be blank.")
+      expect(page).to have_text("Weight can't be blank")
     end
 
-    xit "new athlete page: missing params - birthday" do
+    it "new athlete page: missing params - birthday" do
       visit new_athlete_path
       
       expect(current_path).to eq(new_athlete_path)
 
-      fill_in("Name", with: "Jane")
-      fill_in("Gender", with: "Female")
-      fill_in("Height", with: 60)
-      fill_in("Weight", with: 125)
-      fill_in("Birthday", with: "")
+      fill_in("NAME:", with: "Jane Doe")
+      select("Female", from: "GENDER:")
+      fill_in("Feet:", with: 5)
+      fill_in("Inches:", with: 7)
+      fill_in("WEIGHT:", with: 125)
+      fill_in("BIRTHDAY:", with: "")
 
-      click_button("Create Athlete")
+      click_button("Add Athlete")
 
-      expect(page).to have_text("Birthday cannot be blank.")
+      expect(page).to have_text("Birthday can't be blank")
     end
 
-    xit "new athlete page: invalid params - height not a number" do
+    it "new athlete page: invalid params - feet not a number" do
       visit new_athlete_path
 
-      fill_in("Name", with: "Jane")
-      fill_in("Gender", with: "Female")
-      fill_in("Height", with: "sixty")
-      fill_in("Weight", with: 125)
-      fill_in("Birthday", with: "02/02/1992")
+      fill_in("NAME:", with: "Jane Doe")
+      select("Female", from: "GENDER:")
+      fill_in("Feet:", with: "five")
+      fill_in("Inches:", with: 7)
+      fill_in("WEIGHT:", with: 125)
+      fill_in("BIRTHDAY:", with: "02/02/1992")
 
-      click_button("Create Athlete")
+      click_button("Add Athlete")
 
-      expect(page).to have_text("Height is not a number")
+      expect(page).to have_text("Feet is not a number")
     end
 
-    xit "new athlete page: invalid params - weight not a number" do
+    it "new athlete page: invalid params - inches not a number" do
       visit new_athlete_path
 
-      fill_in("Name", with: "Jane")
-      fill_in("Gender", with: "Female")
-      fill_in("Height", with: 60)
-      fill_in("Weight", with: "one twenty-five")
-      fill_in("Birthday", with: "02/02/1992")
+      fill_in("NAME:", with: "Jane Doe")
+      select("Female", from: "GENDER:")
+      fill_in("Feet:", with: 5)
+      fill_in("Inches:", with: "seven")
+      fill_in("WEIGHT:", with: 125)
+      fill_in("BIRTHDAY:", with: "02/02/1992")
 
-      click_button("Create Athlete")
+      click_button("Add Athlete")
+
+      expect(page).to have_text("Inches is not a number")
+    end
+
+    it "new athlete page: invalid params - weight not a number" do
+      visit new_athlete_path
+
+      fill_in("NAME:", with: "Jane Doe")
+      select("Female", from: "GENDER:")
+      fill_in("Feet:", with: 5)
+      fill_in("Inches:", with: 7)
+      fill_in("WEIGHT:", with: "One twenty five")
+      fill_in("BIRTHDAY:", with: "02/02/1992")
+
+      click_button("Add Athlete")
 
       expect(page).to have_text("Weight is not a number")
     end
