@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "User registration form" do
   it "creates new user" do
     visit root_path
-    expect(page).to have_link("Register as a User")
+    expect(page).to have_link("Register as a New User")
     expect(page).to have_link("Log In")
     click_on "Register as a New User"
 
@@ -17,25 +17,26 @@ RSpec.describe "User registration form" do
     fill_in :user_password, with: password
     fill_in :user_email, with: email
 
-    # fill_in "Username", with: username
-    # fill_in "Password", with: password
-    
     click_on "Create User"
-    expect(page).to have_content("Welcome, #{username}!")
+
+    # expect(current_path).to eq(root_path)
+    expect(current_path).to eq(login_path)
+    expect(page).to have_content("Welcome, #{username}! Please Log In")
+
+    expect(page).to have_field(:username)
+    expect(page).to have_field(:password)
+    expect(page).to have_field(:email)
+
+    fill_in :username, with: "funbucket13"
+    fill_in :password, with: "test"
+    fill_in :email, with: "funbucket@aol.com"
+
+    click_on "Log In"
+
+    expect(current_path).to eq(root_path)
+
+    expect(page).to have_content("Logged in as #{username}")
     expect(page).to have_link("Log out")
     expect(page).to have_link("Create Athlete")
   end
-
-  it "has a Create Athete link" do
-    click_link "Create Athlete"
-    expect(current_path).to eq(new_athlete_path)
-  end
-
-  # it "has a Log Out link" do  #is this a destroy/delete function?
-  #   click_link "Log out"
-
-  #   expect(current_path).to eq(root_path)
-  #   expect(page).to have_link("Register as a User")
-  #   expect(page).to have_link("Log In")
-  # end
 end

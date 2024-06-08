@@ -2,7 +2,7 @@
 
 <% @athletes.each do |athlete| %>
 <div id=<%="athlete-#{athlete.id}" %>>
-<h3><%= link_to "#{athlete.name}", athlete_path(athlete) %></h3>
+<h3><%= link_to athlete.name, athlete_path(athlete) %></h3>
   Gender: <%= athlete.gender %><br>
   Height: <%= athlete.feet %>'<%= athlete.inches %>"<br>
   Weight: <%= athlete.weight %>lbs<br>

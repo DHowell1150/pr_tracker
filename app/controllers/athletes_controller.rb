@@ -11,7 +11,7 @@ class AthletesController < ApplicationController
   def create
     @new_athlete = current_user.athletes.build(athlete_params)
     if @new_athlete.save
-      flash[:success] = "'#{@new_athlete.name}' created successfully."
+      flash[:success] = "#{@new_athlete.name} created successfully."
       redirect_to athletes_path
     else
       flash[:errors] = @new_athlete.errors.full_messages.to_sentence
@@ -29,8 +29,10 @@ class AthletesController < ApplicationController
 
   def update
     @athlete = Athlete.find(params[:id])
-    @athlete = Athlete.update(athlete_params)
-    redirect_to athlete_path(@athlete)
+    if @athlete = Athlete.update(athlete_params)
+      flash[:success] = "Athlete successfully updated."
+      redirect_to athlete_path(@athlete)
+    end
   end
 
   private

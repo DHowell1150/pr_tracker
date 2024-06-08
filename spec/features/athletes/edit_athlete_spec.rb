@@ -19,12 +19,11 @@ RSpec.describe "edit_athlete", type: :feature  do
     end
 
     it "edit athlete page: Athlete params are edited" do
-      athlete = @user.athletes.create!(name: "John", gender: "Male", height: 72, weight: 200, birthday: "01/01/1991")
+      athlete = @user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")
       
       visit athlete_path(athlete)
       
       expect(current_path).to eq(athlete_path(athlete))
-
       expect(page).to have_link("Edit Athlete")
 
       click_link("Edit Athlete")
@@ -40,6 +39,7 @@ RSpec.describe "edit_athlete", type: :feature  do
 
       click_button("Update #{athlete.name}")
 
+      # expect(current_path).to eq(athlete_path(athlete))
       expect(page).to have_text("Athlete successfully updated.")
       expect(current_path).to eq(athlete_path(athlete))
 
