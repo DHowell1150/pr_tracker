@@ -29,9 +29,12 @@ class AthletesController < ApplicationController
 
   def update
     @athlete = Athlete.find(params[:id])
-    if @athlete = Athlete.update(athlete_params)
+    if @athlete.update(athlete_params)
       flash[:success] = "Athlete successfully updated."
       redirect_to athlete_path(@athlete)
+    else
+      flash[:errors] = @athlete.errors.full_messages.to_sentence
+      redirect_to edit_athlete_path(@athlete)
     end
   end
 
