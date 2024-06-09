@@ -1,5 +1,6 @@
 <% if current_user %>
   Logged in as <%=current_user.username %><br>
+  <br>
   <%= link_to "Log out" %> <br>
   <%= link_to "Create Athlete", new_athlete_path%>
 <% else %>

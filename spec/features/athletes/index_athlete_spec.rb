@@ -6,7 +6,6 @@ RSpec.describe "index_athlete", type: :feature  do
       @user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
 
       @athlete_1 = @user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")
-
       @athlete_2 = @user.athletes.create!(name: "Jane", gender: "Female", feet: 5, inches: 5, weight: 125, birthday: "02/02/1992")
       
       visit athletes_path
@@ -67,12 +66,37 @@ RSpec.describe "index_athlete", type: :feature  do
       end
     end
 
-  describe "user has no athletes" do
-    xit "athlete index page: Displays no athletes message when none exist" do
-      # user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
+    it "destroy athlete: Athlete is deleted" do
       expect(current_path).to eq(athletes_path)
 
-      expect(page).to have_text("No athletes found.")
+      expect(page).to have_button("Delete #{@athlete_1.name}")
+      
+      click_button("Delete #{@athlete_1.name}")
+      expect(current_path).to eq(athletes_path)
+
+      expect(page).to have_text("Athlete successfully deleted")
+    end
+  end
+
+
+  describe "user has no athletes" do
+    it "athlete index page: Displays no athletes message when none exist" do
+      @user = User.create!(
+        username: "anotheruser",
+        password: "test", 
+        email: "test@aol.com")
+      visit login_path
+      fill_in "Username:", with: @user.username
+      fill_in "Password:", with: @user.password
+      fill_in "Email Address:", with: @user.email
+      click_on "Log In"
+      expect(current_path).to eq(root_path)
+
+      visit athletes_path
+      
+      expect(current_path).to eq(athletes_path)
+      expect(@user.athletes.empty?).to be(true)
+      expect(page).to have_text("No athletes found")
       expect(page).to have_link("Create Athlete")
 
       click_link("Create Athlete")
@@ -80,7 +104,6 @@ RSpec.describe "index_athlete", type: :feature  do
       expect(current_path).to eq(new_athlete_path)
     end
   end
-  end
+end
 
   # I can't think of any SAD PATHS for this feature.
-end

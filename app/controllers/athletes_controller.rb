@@ -1,6 +1,8 @@
 class AthletesController < ApplicationController
   def index
-    @athletes = Athlete.all
+    # @athletes = current_user.athletes
+    @athletes = Athlete.all #I saw @athletes = current_user.athletes. `current_user` works in pry but is an "undefined method" when ran in terminal
+    # flash.now[:notice] = "No athletes found" if @athletes.empty?
   end
 
   def new
@@ -36,6 +38,13 @@ class AthletesController < ApplicationController
       flash[:errors] = @athlete.errors.full_messages.to_sentence
       redirect_to edit_athlete_path(@athlete)
     end
+  end
+
+  def destroy
+    @athlete = Athlete.find(params[:id])
+    @athlete.delete
+    flash[:success] = "Athlete successfully deleted"
+    redirect_to athletes_path
   end
 
   private

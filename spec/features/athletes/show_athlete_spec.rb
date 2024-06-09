@@ -45,7 +45,7 @@ RSpec.describe "show_athlete", type: :feature  do
     end
   end
 
-  describe "SAD PATHS" do
+  describe "SAD PATHS" do # Can I test this if I don't have an ID to route to?
     xit "athlete show page: Athlete does not exist" do
       user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
 

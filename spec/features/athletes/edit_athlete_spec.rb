@@ -146,7 +146,7 @@ RSpec.describe "edit_athlete", type: :feature  do
       expect(page).to have_text("Weight can't be blank")
     end
 
-    xit "edit athlete page: invalid params - Feet not a number" do
+    it "edit athlete page: invalid params - Feet not a number" do
       visit edit_athlete_path(@athlete)
 
       fill_in("Feet", with: "seventy-two")
