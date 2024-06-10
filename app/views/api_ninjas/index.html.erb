@@ -1,0 +1,8 @@
+<h1> Movements by Name </h1>
+<% @movements_by_name.each do |movement| %>
+  <%= movement[:name] %><br>
+  <br>
+  <%= movement[:type] %><br>
+  <br>
+  <%= movement[:instructions] %><br>
+<% end %>
