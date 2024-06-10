@@ -66,7 +66,9 @@ RSpec.describe "new_athlete", type: :feature  do
 
     it "new athlete page: missing params - name" do
       visit new_athlete_path
-      
+    end
+
+    it "new athlete page: missing params - name" do
       expect(current_path).to eq(new_athlete_path)
 
       fill_in("NAME:", with: "")
@@ -97,7 +99,6 @@ RSpec.describe "new_athlete", type: :feature  do
 
     #   expect(page).to have_text("Gender can't be blank")
     # end
-
     it "new athlete page: missing params - feet" do
       visit new_athlete_path
       
@@ -110,6 +111,7 @@ RSpec.describe "new_athlete", type: :feature  do
       fill_in("WEIGHT:", with: 125)
       fill_in("BIRTHDAY:", with: "02/02/1992")
 
+      click_button("Add Athlete")
       click_button("Add Athlete")
 
       expect(page).to have_text("Feet can't be blank")
@@ -128,6 +130,7 @@ RSpec.describe "new_athlete", type: :feature  do
       fill_in("BIRTHDAY:", with: "02/02/1992")
 
       click_button("Add Athlete")
+      click_button("Add Athlete")
 
       expect(page).to have_text("Inches is not a number")
     end
@@ -145,6 +148,7 @@ RSpec.describe "new_athlete", type: :feature  do
       fill_in("BIRTHDAY:", with: "02/02/1992")
 
       click_button("Add Athlete")
+      click_button("Add Athlete")
 
       expect(page).to have_text("Weight can't be blank")
     end
@@ -161,6 +165,7 @@ RSpec.describe "new_athlete", type: :feature  do
       fill_in("WEIGHT:", with: 125)
       fill_in("BIRTHDAY:", with: "")
 
+      click_button("Add Athlete")
       click_button("Add Athlete")
 
       expect(page).to have_text("Birthday can't be blank")
@@ -192,6 +197,7 @@ RSpec.describe "new_athlete", type: :feature  do
       fill_in("BIRTHDAY:", with: "02/02/1992")
 
       click_button("Add Athlete")
+      click_button("Add Athlete")
 
       expect(page).to have_text("Inches is not a number")
     end
@@ -206,6 +212,7 @@ RSpec.describe "new_athlete", type: :feature  do
       fill_in("WEIGHT:", with: "One twenty five")
       fill_in("BIRTHDAY:", with: "02/02/1992")
 
+      click_button("Add Athlete")
       click_button("Add Athlete")
 
       expect(page).to have_text("Weight is not a number")
