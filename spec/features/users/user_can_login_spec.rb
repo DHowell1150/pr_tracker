@@ -2,23 +2,8 @@ require "rails_helper"
 
 RSpec.describe "logging in" do
   it "can log in with valid credentials" do
-    # As a registered user
-    # When I visit '/'
-    # and I click on a link that says "I already have an account"
-    # Then I should see a login form
-    # When I enter my username and password
-    # and submit the form
-    # I am redirected to the home page
-    # and I see a welcome message with my username
-    # and I should no longer see the link that says "I already have an account"
-    # and I should no longer see the link that says "Register as a User"
-    # and I should see a link that says "Log out"
-
-    visit root_path
     user = User.create!(username: "funbucket13", password: "test", email: "funbucket@aol.com")
-
-    click_on "Log In"
-
+    visit login_path
     expect(current_path).to eq(login_path)
 
     fill_in :username, with: user.username
@@ -50,6 +35,30 @@ RSpec.describe "logging in" do
 
     expect(page).to have_content("Sorry, your credentials are bad")
   end
+
+  it "has a Create Athete link" do
+    user = User.create!(username: "funbucket13", password: "test", email: "funbucket@aol.com")
+    visit login_path
+    expect(current_path).to eq(login_path)
+
+    fill_in :username, with: user.username
+    fill_in :password, with: user.password
+    fill_in :email, with: user.email
+
+    click_on "Log In"
+    expect(current_path).to eq(root_path)
+
+    click_link "Create Athlete"
+    expect(current_path).to eq(new_athlete_path)
+  end
+
+  # it "has a Log Out link" do  #is this a destroy/delete function?
+  #   click_link "Log out"
+
+  #   expect(current_path).to eq(root_path)
+  #   expect(page).to have_link("Register as a User")
+  #   expect(page).to have_link("Log In")
+  # end
 end
 
 

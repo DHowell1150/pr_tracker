@@ -1,16 +1,10 @@
 require "rails_helper" 
 
 RSpec.describe "User registration form" do
-  # As a visitor
-  # When I visit '/'
-  # and I can click a link that says "Sign Up to Be a User"
-  # and I can enter registration details in a form
-  # and submit that form
-  # Then I should see a welcome message with my username
-  # and my user details have been saved in the database.
-
   it "creates new user" do
     visit root_path
+    expect(page).to have_link("Register as a New User")
+    expect(page).to have_link("Log In")
     click_on "Register as a New User"
 
     expect(current_path).to eq(new_user_path)
@@ -23,10 +17,26 @@ RSpec.describe "User registration form" do
     fill_in :user_password, with: password
     fill_in :user_email, with: email
 
-    # fill_in "Username", with: username
-    # fill_in "Password", with: password
-    
     click_on "Create User"
-    expect(page).to have_content("Welcome, #{username}!")
+
+    # expect(current_path).to eq(root_path)
+    expect(current_path).to eq(login_path)
+    expect(page).to have_content("Welcome, #{username}! Please Log In")
+
+    expect(page).to have_field(:username)
+    expect(page).to have_field(:password)
+    expect(page).to have_field(:email)
+
+    fill_in :username, with: "funbucket13"
+    fill_in :password, with: "test"
+    fill_in :email, with: "funbucket@aol.com"
+
+    click_on "Log In"
+
+    expect(current_path).to eq(root_path)
+
+    expect(page).to have_content("Logged in as #{username}")
+    expect(page).to have_link("Log out")
+    expect(page).to have_link("Create Athlete")
   end
 end

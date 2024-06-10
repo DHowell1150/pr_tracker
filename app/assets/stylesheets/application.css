@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+.flash {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.flash.notice {
+  background-color: #e7f3fe;
+  color: #31708f;
+}
+
+.flash.alert {
+  background-color: #f2dede;
+  color: #a94442;
+}
+
+.flash.error {
+  background-color: #f2dede;
+  color: #a94442;
+}

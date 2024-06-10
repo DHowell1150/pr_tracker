@@ -1,6 +1,8 @@
 class AthletesController < ApplicationController
   def index
-    @athletes = Athlete.all
+    # @athletes = current_user.athletes
+    @athletes = Athlete.all #I saw @athletes = current_user.athletes. `current_user` works in pry but is an "undefined method" when ran in terminal
+    # flash.now[:notice] = "No athletes found" if @athletes.empty?
   end
 
   def new
@@ -8,16 +10,44 @@ class AthletesController < ApplicationController
     @new_athlete = Athlete.new
   end
 
+  # def create
+  #   @new_athlete = current_user.athletes.build(athlete_params)
+  #   if @new_athlete.save
+  #     flash[:success] = "#{@new_athlete.name} created successfully."
+  #     redirect_to athletes_path
+  #   else
+  #     flash[:errors] = @new_athlete.errors.full_messages.to_sentence
+  #     redirect_to new_athlete_path
+  #   end
+  # end
+
+
   def create
     @new_athlete = current_user.athletes.build(athlete_params)
     if @new_athlete.save
-      flash[:success] = "'#{@new_athlete.name}' created successfully."
+      flash[:notice] = "#{@new_athlete.name} created successfully."
       redirect_to athletes_path
     else
-      flash[:errors] = @new_athlete.errors.full_messages.to_sentence
-      redirect_to new_athlete_path
+      flash[:error] = @new_athlete.errors.full_messages.to_sentence
+      # puts flash[:error] # Debugging line
+      render :new
     end
   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   def show
     @athlete = Athlete.find(params[:id])
@@ -29,8 +59,20 @@ class AthletesController < ApplicationController
 
   def update
     @athlete = Athlete.find(params[:id])
-    @athlete = Athlete.update(athlete_params)
-    redirect_to athlete_path(@athlete)
+    if @athlete.update(athlete_params)
+      flash[:success] = "Athlete successfully updated."
+      redirect_to athlete_path(@athlete)
+    else
+      flash[:errors] = @athlete.errors.full_messages.to_sentence
+      redirect_to edit_athlete_path(@athlete)
+    end
+  end
+
+  def destroy
+    @athlete = Athlete.find(params[:id])
+    @athlete.delete
+    flash[:success] = "Athlete successfully deleted"
+    redirect_to athletes_path
   end
 
   private

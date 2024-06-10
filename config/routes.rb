@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root "welcome#index"
   resources :users, only: [:new, :create]
 
-  resources :athletes, only: [:index, :new, :create, :show, :edit, :update] do
+  resources :athletes, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :progresses, only: [:index]
   end
   
