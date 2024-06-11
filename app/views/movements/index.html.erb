@@ -1,0 +1,10 @@
+<h1> Movements </h1>
+
+<% @movements.each do |movement| %>
+  <div id=<%="movement-#{movement.id}" %>>
+    <%= movement.name %>
+    <%= movement.description %>
+    <%= movement.image %>
+    <%= movement.video %>
+  </div>
+  <% end %>
