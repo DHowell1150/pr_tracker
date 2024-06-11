@@ -2,9 +2,10 @@
 
 <% @movements.each do |movement| %>
   <div id=<%="movement-#{movement.id}" %>>
-    <%= movement.name %>
-    <%= movement.description %>
-    <%= movement.image %>
-    <%= movement.video %>
+    <h3><%= movement.name %></h3>
+    Description: <%= movement.description %><br>
+    [image] <%= movement.image %><br>
+    [video] <%= movement.video %><br>
+    <br>
   </div>
   <% end %>

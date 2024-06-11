@@ -8,6 +8,11 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# @user = User.create!(username: "Dana Howell", email: "howelld115@gmail.com", password: "test")
-# @dana = @user.athletes.create!(name: "Dana Howell", gender: "Female", feet: 5, inches: 7, weight: 155, birthday: "1982-08-22") ##in pry: Sun, 22 Aug 1982
-# @stace = @user.athletes.create!(name: "Stacey Kessler", gender: "Female", feet: 5, inches: 10, weight: 175, birthday: "1987-09-06")
+@user = User.create!(username: "Dana Howell", email: "howelld115@gmail.com", password: "test")
+
+@user1 = @user.athletes.create!(name: "Jane Doe", gender: "Female", feet: 5, inches: 7, weight: 155, birthday: "1982-08-22")
+@user2 = @user.athletes.create!(name: "Jo Smith", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "1987-09-06")
+
+movement1 = @user1.movements.create!(name: "Squat", description: "Get low", image: "test", video: "test")
+movement2 = @user1.movements.create!(name: "Bench Press", description: "Beach muscle galore", image: "test", video: "test")
+movement3 = @user1.movements.create!(name: "Deadlift", description: "Bootaaay", image: "test", video: "test")
