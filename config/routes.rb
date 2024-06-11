@@ -12,8 +12,7 @@ Rails.application.routes.draw do
 
   resources :athletes, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :progresses, only: [:index]
-  end
-  
+  resources :movements, only: :show
   get "/api_ninjas", to: "api_ninjas#index"
   get "/login", to: "users#login_form"
   post "/login", to: "users#login"
