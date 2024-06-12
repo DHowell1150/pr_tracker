@@ -65,10 +65,6 @@ RSpec.describe "new_athlete", type: :feature  do
     end
 
     it "new athlete page: missing params - name" do
-      visit new_athlete_path
-    end
-
-    it "new athlete page: missing params - name" do
       expect(current_path).to eq(new_athlete_path)
 
       fill_in("NAME:", with: "")

@@ -11,9 +11,10 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
 
   resources :athletes, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
-    resources :progresses, only: [:index]
+    resources :progresses, only: [:show, :create, :new]
   end
-  
+
+
   get "/login", to: "users#login_form"
   post "/login", to: "users#login"
 end
