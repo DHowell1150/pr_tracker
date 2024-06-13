@@ -13,7 +13,7 @@ class MovementsController < ApplicationController
   end
 
   def create
-    # @movement = Movement.new(movement_params) # no params for this.  Where are they?!
+    # @new_movement = Movement.new(movement_params) # no params for this.  Where are they?!
     @movement_name = @new_movement.name
     @instructions = fetch_instructions(@movement_name)
     # if @instructions
@@ -50,10 +50,10 @@ private
 
 
     # No longer needed because we are able to search dynamically by name, instead of dumping everything from the blank name API call
-      # @movement_instructions = []
-      # json.each do |movement_data|
-      # # require "pry"; binding.pry
-      #   @movement_instructions << movement_data[:instructions]
-      # end
+      @movement_instructions = []
+      json.each do |movement_data|
+      # require "pry"; binding.pry
+        @movement_instructions << movement_data[:instructions]
+      end
   end
 end

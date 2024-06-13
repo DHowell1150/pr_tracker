@@ -2,17 +2,23 @@ require "rails_helper"
 
 RSpec.describe "Movement create", type: :feature do
   describe "HAPPY PATHS" do
+    include_context 'login_as_user'
+    let(:user) {create(:user)}
+    
+    # def login_as
+    #   visit login_path
+    #   fill_in :username, with: user.username
+    #   fill_in :password, with: user.password
+    #   fill_in :email, with: user.email
+    #   click_on "Log In"
+    #   expect(current_path).to eq(root_path)
+    # end
+
     before do
-      @user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
       
-      visit login_path
-      fill_in :username, with: @user.username
-      fill_in :password, with: @user.password
-      fill_in :email, with: @user.email
-      click_on "Log In"
-      expect(current_path).to eq(root_path)
+      login_as_user
       
-      @athlete = @user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")
+      @athlete = user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")
     end
 
     it "can create a movement" do
@@ -49,8 +55,8 @@ RSpec.describe "Movement create", type: :feature do
 
   describe "SAD PATHS" do
     before do
-      @user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
-      @athlete = @user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")
+      user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
+      @athlete = user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")
 
       visit athlete_path(@athlete)
       click_link "Create New Movement"
