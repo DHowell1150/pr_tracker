@@ -5,6 +5,14 @@ RSpec.describe "Athlete_progresses show" do
     before do
       @user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
 
+      visit login_path
+
+      fill_in :username, with: @user.username
+      fill_in :password, with: @user.password
+      fill_in :email, with: @user.email
+
+      click_on "Log In"
+
       @athlete_1 = @user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")
       # @athlete_2 = @user.athletes.create!(name: "Jane", gender: "Female", feet: 5, inches: 5, weight: 125, birthday: "02/02/1992")
 
@@ -15,10 +23,11 @@ RSpec.describe "Athlete_progresses show" do
     end
 
     it "creates a new progress" do
-      expect(page).to have_select('Movement:', options: ["Back Squat", "Bench Press", "Deadlift"])
-      expect(page).to have_field('Date:', type: "date")
+      require 'pry' ; binding.pry
+      expect(page).to have_field('Date:')
       expect(page).to have_field('Reps:', type: "number")
       expect(page).to have_field('Weight:', type: "number")
+      expect(page).to have_select('Movement:', options: ["Back Squat", "Bench Press", "Deadlift"])
       expect(page).to have_button("Add New PR")
 
       select 'Back Squat', from: 'Movement:'
