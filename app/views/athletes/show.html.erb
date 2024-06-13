@@ -11,4 +11,5 @@ Birthday: <%= @athlete.birthday.strftime("%-m/%-d/%Y")%>
 
 <h3> Goals </h3>
 
+<%= link_to "Create New Movement", new_movement_path(@athlete) %><br>
 <%= link_to "Progress", athlete_path(@athlete) %>

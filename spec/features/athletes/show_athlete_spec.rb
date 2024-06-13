@@ -32,6 +32,16 @@ RSpec.describe "show_athlete", type: :feature  do
       expect(current_path).to eq(edit_athlete_path(athlete))
     end
 
+    it "has a link to Create Movement" do
+      user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
+      athlete = user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")
+
+      visit athlete_path(athlete)
+      expect(page).to have_link("Create New Movement")
+      click_link "Create New Movement"
+      expect(current_path).to eq(new_movement_path(athlete))
+    end
+
     it "has a link to Progress" do
       user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
       athlete = user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")

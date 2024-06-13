@@ -1,16 +1,20 @@
 class MovementsController < ApplicationController
 
   def new
-    # Standard new action
-    @movement = Movement.new
-    # restrict choices of names
-    @movement_names = ["Hammer Curls", "Olympic Squat", "Dumbbell Bench Press", "Seated Cable Rows", "Barbell Deadlift"]
+    @new_movement = Movement.new
+    # restrict choices of names by hardcoding for now
+    @movement_names = [
+                        "Pullups", 
+                        "Olympic Squat", 
+                        "Dumbbell Bench Press", 
+                        "Clean and jerk", 
+                        "Barbell Deadlift"
+                      ]
   end
 
   def create
-    # Standard create action
-    @movement_name = @movement.name
-    # Uses the private method
+    # @movement = Movement.new(movement_params) # no params for this.  Where are they?!
+    @movement_name = @new_movement.name
     @instructions = fetch_instructions(@movement_name)
     # if @instructions
     #   flash[:notice] = "Instructions fetched successfully."
@@ -18,16 +22,18 @@ class MovementsController < ApplicationController
     #   flash[:alert] = "Failed to fetch instructions."
     # end
     
-    # Standard render action
     render :new
   end
     
   def show
-    # Standard show action
     @movement = Movement.find(params[:id])
   end
 
 private
+
+  def movement_params
+    params.require(:movement).permit(:movement, :date, :reps, :weight).merge(athlete_id: params[:athlete_id])
+  end
 
   # Makes the API call - would normally be handled by the facade
   def fetch_instructions(movement_name)
@@ -40,8 +46,9 @@ private
 
     response = conn.get(uri)
     json = JSON.parse(response.body, symbolize_names: true)
-
     json.first[:instructions]
+
+
     # No longer needed because we are able to search dynamically by name, instead of dumping everything from the blank name API call
       # @movement_instructions = []
       # json.each do |movement_data|
