@@ -41,7 +41,19 @@ RSpec.describe "show_athlete", type: :feature  do
   
       click_on "Progress"
   
-      # expect(current_path).to eq(athlete_path(@stace))
+      # expect(current_path).to eq(athlete_progress_path(athlete))
+    end
+
+    it "has a link to Add a New Personal Record" do
+      user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
+      athlete = user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")
+
+      visit athlete_path(athlete)
+      expect(page).to have_link("Add a New Personal Record")
+  
+      click_on "Add a New Personal Record"
+  
+      expect(current_path).to eq(new_athlete_progress_path(athlete))
     end
   end
 

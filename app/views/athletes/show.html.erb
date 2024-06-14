@@ -11,4 +11,5 @@ Birthday: <%= @athlete.birthday.strftime("%-m/%-d/%Y")%>
 
 <h3> Goals </h3>
 
-<%= link_to "Progress", athlete_path(@athlete) %>
+<%= link_to "Add a New Personal Record)", new_athlete_progress_path(@athlete) %> new_athlete_progress_path(athlete)<br>
+<%= link_to "Progress)", athlete_path(@athlete) %> athlete_progress_path(athlete)
