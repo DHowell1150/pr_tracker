@@ -19,7 +19,7 @@ RSpec.describe "Athlete_progresses show" do
       @movement1 = @athlete_1.movements.create!(name: "Back Squat", description: "Get Low", image: "test", video: "test")
       @movement2 = @athlete_1.movements.create!(name: "Bench Press", description: "Beach Body Galore", image: "test", video: "test")
       # @movement3 = @athlete_1.movements.create!(name: "Deadlift", description: "Bootaaay", image: test, video: "test")
-      visit athlete(@athlete_1)
+      visit athlete_path(@athlete_1)
       click_on "Add a New Personal Record"
       expect(current_path).to eq(new_athlete_progress_path(@athlete_1))
     end

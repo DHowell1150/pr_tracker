@@ -23,7 +23,6 @@ RSpec.describe "Athlete_progresses show" do
     end
 
     it "creates a new progress" do
-      require 'pry' ; binding.pry
       expect(page).to have_field('Date:')
       expect(page).to have_field('Reps:', type: "number")
       expect(page).to have_field('Weight:', type: "number")
