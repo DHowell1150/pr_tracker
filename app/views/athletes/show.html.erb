@@ -9,14 +9,22 @@ Birthday: <%= @athlete.birthday.strftime("%-m/%-d/%Y")%>
 <%= button_to "Delete #{@athlete.name}", athlete_path(@athlete), method: :delete , data: { confirm: "Are you sure you want to delete this athlete?" } %>
 <h3> Movements </h3>
 how do i get athlete_movements in here?  @athlete doesn't have movement right now.
-  <% @athlete.movements.each do |movement| %>
-    <div class="movement">
-      <% binding.pry %>
+<% binding.pry %>
+
+<!--  
       <h3><%= movement.name %></h3>
       Description: <%= movement.description %><br>
       Instructions: @instructions
       Image: <%= movement.image %><br>
       Video: <%= movement.video %><br>
+-->
+  <% @movements_with_instructions.each do |movement| %>
+    <div class="movement">
+      <h1><%= movement[:movement].name %></h1>
+      Description: <%= movement[:movement].description %><br>
+      Instructions: <%= movement[:instructions].instructions %><br>
+      Image: <%= movement[:movement].image %><br>
+      Video: <%= movement[:movement].video %><br>
     </div>
   <% end %>
 
