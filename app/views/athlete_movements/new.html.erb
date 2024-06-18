@@ -1,0 +1,21 @@
+<h1> Create a New Movement </h1>
+
+<%= form_with model: [@athlete, @new_movement], local: true, data: {turbo: false} do |form| %>
+  <%= form.label :name, 'Name:' %>
+  <%= form.select :name, ["Pullups", 
+                              "Olympic Squat", 
+                              "Dumbbell Bench Press", 
+                              "Clean and jerk", 
+                              "Barbell Deadlift"] %><br>
+                                
+  <%= form.label :description, 'Description:' %>
+  <%= form.text_field :description %><br>
+
+  <%= form.label :image, 'Image:' %>
+  <%= form.text_field :image %><br>
+
+  <%= form.label :video, 'Video:' %>
+  <%= form.text_field :video %><br>
+
+  <%= form.submit "Add Movement" %>
+<% end %>

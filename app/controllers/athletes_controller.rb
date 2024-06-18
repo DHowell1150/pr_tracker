@@ -34,21 +34,6 @@ class AthletesController < ApplicationController
     end
   end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   def show
     @athlete = Athlete.find(params[:id])
   end

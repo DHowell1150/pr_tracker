@@ -8,7 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-@user1 = @user.athletes.create!(name: "Jane Doe", gender: "Female", feet: 5, inches: 7, weight: 155, birthday: "1982-08-22")
+@user1 = User.create!(username: "Jane Doe", email: "test@test.com", password: "test")
 
 @athlete_1 = @user1.athletes.create!(name: "Jane Doe", gender: "Female", feet: 5, inches: 7, weight: 155, birthday: "1982-08-22") 
 @athlete_2 = @user1.athletes.create!(name: "Joe Smith", gender: "male", feet: 6, inches: 0, weight: 200, birthday: "1987-09-06")

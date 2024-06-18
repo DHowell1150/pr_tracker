@@ -8,9 +8,9 @@ RSpec.describe "show_movement", type: :feature  do
 
       movement = athlete.movements.create!(name: "Olympic Squat", description: "Get low", image: "test", video: "test")
 
-      visit movement_path(movement)
+      visit athlete_movement_path(athlete, movement)
 
-      expect(current_path).to eq(movement_path(movement))
+      expect(current_path).to eq(athlete_movement_path(athlete, movement))
 
       expect(page).to have_content(movement.name)
       expect(page).to have_content(movement.description)
