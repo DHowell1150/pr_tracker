@@ -42,6 +42,7 @@ RSpec.describe "Movement create", type: :feature do
 
       click_button "Add Movement"
       expect(current_path).to eq(athlete_path(@athlete))
+      save_and_open_page
       within '.movement' do
         expect(page).to have_content("Olympic Squat")
         expect(page).to have_content("A description")

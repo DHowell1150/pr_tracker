@@ -4,31 +4,32 @@ class AthleteMovementsController < ApplicationController
     @athlete = Athlete.find(params[:athlete_id])
     @new_movement = @athlete.movements.build
     @instructions = fetch_instructions(@new_movement.name)
-    
     # @movements_with_instructions = @athlete.movements.map do |movement|
     #   instructions = fetch_instructions(movement.name)
     #   { movement: movement, instructions: instructions }
     # end
-
+    
     # @athlete_movement = Movement.new
     # @new_movement = Movement.find_by(athlete_id: @athlete.id, id: @movement.id)
     # restrict choices of names by hardcoding for now
     # @movement_name = [
-    #                     "Pullups", 
-    #                     "Olympic Squat", 
-    #                     "Dumbbell Bench Press", 
-    #                     "Clean and jerk", 
-    #                     "Barbell Deadlift"
-    #                   ]
-  end
-
-  def create
-    @athlete = Athlete.find(params[:athlete_id])
-    @new_movement = @athlete.movements.build(movement_params)
-    # @athlete.movements << @movement
-    # @new_movement = @athlete.movements.last #refactor this
-    # @new_movement = @athlete.movements.find_by(athlete_id: @athlete.id, id: @movement.id)
-
+      #                     "Pullups", 
+      #                     "Olympic Squat", 
+      #                     "Dumbbell Bench Press", 
+      #                     "Clean and jerk", 
+      #                     "Barbell Deadlift"
+      #                   ]
+    end
+    
+    def create
+      @athlete = Athlete.find(params[:athlete_id])
+      @new_movement = @athlete.movements.build(movement_params)
+      @instructions = fetch_instructions(@new_movement.name)
+      require "pry"; binding.pry
+      # @athlete.movements << @movement
+      # @new_movement = @athlete.movements.last #refactor this
+      # @new_movement = @athlete.movements.find_by(athlete_id: @athlete.id, id: @movement.id)
+      
     if @new_movement.save
       # @movement_name = @new_movement.name
       # @instructions = fetch_instructions(@new_movement.name)
