@@ -50,6 +50,20 @@ RSpec.describe "index_athlete", type: :feature  do
       end
     end
 
+    it "has a link to Create Movement" do
+      within "#athlete-#{@athlete_1.id}" do
+        expect(page).to have_link("Create New Movement")
+        click_link "Create New Movement"
+        expect(current_path).to eq(new_movement_path)
+      end
+
+      within "#athlete-#{@athlete_2.id}" do
+        expect(page).to have_link("Create New Movement")
+        click_link "Create New Movement"
+        expect(current_path).to eq(new_movement_path)
+      end
+    end
+
     it "has a link to athlete's show page" do
       within "#athlete-#{@athlete_1.id}" do
         expect(page).to have_link("#{@athlete_1.name}")

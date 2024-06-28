@@ -10,11 +10,11 @@ class UsersController < ApplicationController
     
     if new_user.save
       session[:user_id] = new_user.id
-      flash[:success] = "Welcome, #{new_user.username}! Please Log In"
+      flash[:notice] = "Welcome, #{new_user.username}! Please Log In"
       redirect_to login_path
     else 
       redirect_to new_user
-      flash[:error] = "Sorry, your credentials are bad"
+      flash[:errors] = "Sorry, your credentials are bad"
     end
   end
 
@@ -25,10 +25,10 @@ class UsersController < ApplicationController
     user = User.find_by(username: params[:username])
     if user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:success] = "Welcome, #{user.username}!"
+      flash[:notice] = "Welcome, #{user.username}!"
       redirect_to root_path
     else
-      flash[:error] = "Sorry, your credentials are bad"
+      flash[:errors] = "Sorry, your credentials are bad"
       render :login_form
     end
   end

@@ -16,20 +16,9 @@ RSpec.describe "edit_athlete", type: :feature  do
       click_on "Log In"
       expect(current_path).to eq(root_path)
 
-      click_on "Create Athlete"
-      expect(current_path).to eq(new_athlete_path)
+      @athlete = @user.athletes.create!(name: "Jane Doe", gender: "Female", feet: 5, inches: 7, weight: 155, birthday: "1982-08-22")
 
-      fill_in "NAME:", with: "Jane Doe"
-      select "Female", from: "GENDER:"
-      fill_in "Feet:", with: 5
-      fill_in "Inches:", with: 7
-      fill_in "WEIGHT:", with: 155
-      fill_in "BIRTHDAY:", with: "1982-08-22"
-      click_button("Add Athlete")
-    
-      @user.athletes.each do |athlete|
-        @athlete = athlete
-      end
+      visit edit_athlete_path(@athlete)
     end
     
     it "edit athlete page: Athlete params are edited" do

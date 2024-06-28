@@ -12,6 +12,7 @@
       Weight: <%= athlete.weight %>lbs<br>
       Birthday: <%= athlete.birthday.strftime("%-m/%-d/%Y") %><br>
       <%= link_to "Edit Athlete", edit_athlete_path(athlete) %><br>
+      <%= link_to "Create New Movement", new_movement_path %><br>
       <%= button_to "Delete #{athlete.name}", athlete_path(athlete), method: :delete , data: { confirm: "Are you sure you want to delete this athlete?" } %>
 
 

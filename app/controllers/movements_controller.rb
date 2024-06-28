@@ -38,7 +38,7 @@ class MovementsController < ApplicationController
     #     flash[:notice] = "Instructions fetched successfully."
     #   end
     else
-    #     flash[:alert] = "Failed to fetch instructions."
+    #     flash[:errors] = "Failed to fetch instructions."
       
       render :new
     end
