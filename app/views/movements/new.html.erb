@@ -1,6 +1,6 @@
 <h1> Create a New Movement </h1>
 
-<%= form_with model: [@athlete, @new_movement], local: true, data: {turbo: false} do |form| %>
+<%= form_with model: [@new_movement], local: true, data: {turbo: false} do |form| %>
   <%= form.label :name, 'Name:' %>
   <%= form.select :name, ["Pullups", 
                               "Olympic Squat", 

@@ -38,7 +38,7 @@ RSpec.describe "show_athlete", type: :feature  do
       visit athlete_path(athlete)
       expect(page).to have_link("Create New Movement")
       click_link "Create New Movement"
-      expect(current_path).to eq(new_athlete_movement_path(athlete))
+      expect(current_path).to eq(new_movement_path)
     end
 
     it "has a movement" do
@@ -47,7 +47,7 @@ RSpec.describe "show_athlete", type: :feature  do
 
       visit athlete_path(athlete) 
       click_link "Create New Movement"
-      expect(current_path).to eq(new_athlete_movement_path(athlete))
+      expect(current_path).to eq(new_movement_path)
       expect(page).to have_select('Name:', options: ["Pullups", 
                                                           "Olympic Squat", 
                                                           "Dumbbell Bench Press", 
@@ -72,7 +72,6 @@ RSpec.describe "show_athlete", type: :feature  do
         expect(page).to have_content("image_url")
         expect(page).to have_content("video_url")
       end
-      save_and_open_page
     end
 
     it "has a link to Progress" do

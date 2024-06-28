@@ -9,7 +9,7 @@ RSpec.describe "show_movement", type: :feature  do
       visit athlete_path(athlete)
 
       click_link "Create New Movement"
-      expect(current_path).to eq(new_athlete_movement_path(athlete))
+      expect(current_path).to eq(new_movement_path)
       expect(page).to have_select('Name:', options: ["Pullups", 
                                                           "Olympic Squat", 
                                                           "Dumbbell Bench Press", 
@@ -34,7 +34,6 @@ RSpec.describe "show_movement", type: :feature  do
       # expect(current_path).to eq(athlete_movement_path(athlete, movement))
       # expect(current_path).to eq(athlete_path(athlete))
 
-      # save_and_open_page
       expect(page).to have_content(movement.name)
       expect(page).to have_content(movement.description)
       expect(page).to have_content(movement.image)
