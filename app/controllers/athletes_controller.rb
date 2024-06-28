@@ -36,6 +36,7 @@ class AthletesController < ApplicationController
 
   def show
     @athlete = Athlete.find(params[:id])
+    @movements = @athlete.movements
   end
 
   def edit

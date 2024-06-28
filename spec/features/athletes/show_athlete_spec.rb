@@ -38,7 +38,7 @@ RSpec.describe "show_athlete", type: :feature  do
       visit athlete_path(athlete)
       expect(page).to have_link("Create New Movement")
       click_link "Create New Movement"
-      expect(current_path).to eq(new_movement_path)
+      expect(current_path).to eq(new_athlete_movement_path(athlete))
     end
 
 

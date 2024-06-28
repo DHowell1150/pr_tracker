@@ -52,7 +52,7 @@ class MovementsController < ApplicationController
 private
 
   def movement_params
-    params.require(:movement).permit(:name, :description, :image, :video4) #.merge(athlete_id: params[:athlete_id])
+    params.require(:movement).permit(:name, :description, :image, :video) #.merge(athlete_id: params[:athlete_id])
   end
 
   # Makes the API call - would normally be handled by the facade
