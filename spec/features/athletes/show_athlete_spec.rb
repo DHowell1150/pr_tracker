@@ -27,7 +27,7 @@ RSpec.describe "show_athlete", type: :feature  do
       expect(page).to have_link("Edit Athlete")
   
       click_link "Edit Athlete"
-  
+      
       expect(current_path).to eq(edit_athlete_path(athlete))
     end
 
@@ -41,38 +41,39 @@ RSpec.describe "show_athlete", type: :feature  do
       expect(current_path).to eq(new_movement_path)
     end
 
-    it "has a movement" do
-      user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
-      athlete = user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")
 
-      visit athlete_path(athlete) 
-      click_link "Create New Movement"
-      expect(current_path).to eq(new_movement_path)
-      expect(page).to have_select('Name:', options: ["Pullups", 
-                                                          "Olympic Squat", 
-                                                          "Dumbbell Bench Press", 
-                                                          "Clean and jerk", 
-                                                          "Barbell Deadlift"
-                                                        ])
-      expect(page).to have_field("Description:")
-      expect(page).to have_field("Image:")
-      expect(page).to have_field("Video:")
-      expect(page).to have_button("Add Movement")
+    # I don't think I need to test the following here because that will be tested in create_movement, correct? 
+    # it "has a movement" do
+    #   user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
+    #   athlete = user.athletes.create!(name: "John", gender: "Male", feet: 6, inches: 0, weight: 200, birthday: "01/01/1991")
 
-      select "Olympic Squat", from: "Name:"
-      fill_in "Description:", with: "A description"
-      fill_in "Image:", with: "image_url"
-      fill_in "Video:", with: "video_url"
+    #   visit athlete_path(athlete) 
+    #   click_link "Create New Movement"
+    #   expect(current_path).to eq(new_movement_path)
+    #   expect(page).to have_select('Name:', options: ["Pullups", 
+    #                                                       "Olympic Squat", 
+    #                                                       "Dumbbell Bench Press", 
+    #                                                       "Clean and jerk", 
+    #                                                       "Barbell Deadlift"
+    #                                                     ])
+    #   expect(page).to have_field("Description:")
+    #   expect(page).to have_field("Image:")
+    #   expect(page).to have_field("Video:")
+    #   expect(page).to have_button("Add Movement")
+    #   select "Olympic Squat", from: "Name:"
+    #   fill_in "Description:", with: "A description"
+    #   fill_in "Image:", with: "image_url"
+    #   fill_in "Video:", with: "video_url"
 
-      click_button "Add Movement"
-      expect(current_path).to eq(athlete_path(athlete))
-      within '.movement' do
-        expect(page).to have_content("Olympic Squat")
-        expect(page).to have_content("A description")
-        expect(page).to have_content("image_url")
-        expect(page).to have_content("video_url")
-      end
-    end
+    #   click_button "Add Movement"
+    #   expect(current_path).to eq(athlete_path(athlete))
+    #   within '.movement' do
+    #     expect(page).to have_content("Olympic Squat")
+    #     expect(page).to have_content("A description")
+    #     expect(page).to have_content("image_url")
+    #     expect(page).to have_content("video_url")
+    #   end
+    # end
 
     it "has a link to Progress" do
       user = User.create!(username: "funbucket13", email: "test@test.com", password: "test")
